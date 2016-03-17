@@ -156,6 +156,10 @@ func Criticalln(v ...interface{}) {
 
 // Criticalf log critical level message
 func Criticalf(format string, v ...interface{}) {
+	if len(loggers) == 0 {
+		fmt.Fprintf(os.Stderr, format, v...)
+		return
+	}
 	for _, logger := range loggers {
 		logger.Critical(format, v...)
 	}
@@ -191,6 +195,8 @@ func Close() {
 // RegisterLogger register a logger to the global logger list
 func RegisterLogger(mode string, bufSize int64, config interface{}) error {
 	logger := logs.NewLogger(bufSize)
+	logger.SetLogFuncCallDepth(3)
+
 	c, err := json.Marshal(config)
 	if err != nil {
 		return err
