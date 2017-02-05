@@ -135,10 +135,6 @@ func Errorln(v ...interface{}) {
 
 // Errorf log error level message
 func Errorf(format string, v ...interface{}) {
-	if len(loggers) == 0 {
-		fmt.Fprintf(os.Stderr, format, v...)
-		return
-	}
 	for _, logger := range loggers {
 		logger.Error(format, v...)
 	}
@@ -156,10 +152,6 @@ func Criticalln(v ...interface{}) {
 
 // Criticalf log critical level message
 func Criticalf(format string, v ...interface{}) {
-	if len(loggers) == 0 {
-		fmt.Fprintf(os.Stderr, format, v...)
-		return
-	}
 	for _, logger := range loggers {
 		logger.Critical(format, v...)
 	}
