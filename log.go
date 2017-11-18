@@ -187,7 +187,8 @@ func Close() {
 // RegisterLogger register a logger to the global logger list
 func RegisterLogger(mode string, bufSize int64, config interface{}) error {
 	logger := logs.NewLogger(bufSize)
-	logger.SetLogFuncCallDepth(3)
+
+	logger.SetLogFuncCallDepth(4)
 
 	c, err := json.Marshal(config)
 	if err != nil {
