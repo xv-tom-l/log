@@ -6,7 +6,7 @@ import (
 	"os"
 	"sync"
 
-	"github.com/xvtom/logs"
+	"github.com/xvtom/log/internal/logs"
 )
 
 const (
